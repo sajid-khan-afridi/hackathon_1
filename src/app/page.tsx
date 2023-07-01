@@ -8,13 +8,12 @@ import Grid5 from "../../components/section/Grid5";
 
 export default function Home() {
   return (
-    <>
+    <Wrapper>
       <Hero />
       <Promotion />
       <Product />
       <Unique />
       <NewsLetter />
-      <Grid5 />
-    </>
+    </Wrapper>
   );
 }

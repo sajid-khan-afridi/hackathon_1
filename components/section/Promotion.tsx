@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const Promotion = () => {
   return (
-    <Wrapper>
+    <>
       <div className="mt-40">
         <div className=" text-center">
           <h3 className=" ">PROMOTIONS</h3>
@@ -65,7 +65,7 @@ const Promotion = () => {
           </div>
         </div>
       </div>
-    </Wrapper>
+    </>
   );
 };
 

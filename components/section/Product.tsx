@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const Product = () => {
   return (
-    <Wrapper>
+    <>
       <div className="mt-40">
         <div className=" text-center">
           <h3 className=" ">PRODUCTS</h3>
@@ -53,7 +53,7 @@ const Product = () => {
           </div>
         </div>
       </div>
-    </Wrapper>
+    </>
   );
 };
 
