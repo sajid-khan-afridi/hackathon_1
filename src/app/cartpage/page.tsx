@@ -9,7 +9,7 @@ const Page = () => {
         <h2>Shopping Cart</h2>
         {/* <div className="grid sm:grid-cols-1 md:grid-cols-2 mdl:grid-cols-3 mt-10"> */}
         {/* <div className="grid grid-custom w-full gap-10"> */}
-        <div className="grid lg:grid-4col sm:grid-cols-1 md:grid-cols-2 mt-40 gap-x-28 gap-y-12">
+        <div className="grid lg:grid-3col sm:grid-cols-1 md:grid-cols-2 mt-40 gap-x-28 gap-y-12">
           <div className="">
             <Image
               src={"/3.png"}
