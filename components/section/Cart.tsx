@@ -1,3 +1,4 @@
+import Button from "../function/Button";
 import Image from "next/image";
 import React from "react";
 import { MdDelete } from "react-icons/md";
@@ -14,9 +15,9 @@ const Cart = () => {
           className="object-cover rounded-lg"
         />
       </div>
-      <div className="flex flex-row gap-x-28">
-        <div className="bg-red-600 flex flex-col gap-y-5">
-          <h1>Brushed Raglan Sweatshirt</h1>
+      <div className="flex flex-row gap-x-36">
+        <div className=" flex flex-col gap-y-5">
+          <h5>Brushed Raglan Sweatshirt</h5>
           <h1>Dress</h1>
           <h1>Delivery Estimation</h1>
           <h1>5 Working Days</h1>
@@ -24,18 +25,29 @@ const Cart = () => {
         </div>
         <div className="flex flex-col justify-between">
           <MdDelete className="text-4xl" />
-          <div className="flex">
-            <div className="h-5 w-5 rounded-full shadow-2xl bg-gray-700 text-gray-50 p-2 flex justify-center items-center">
-              +
+          <div className="flex gap-x-2 justify-center items-center text-lg">
+            <div className="h-5 w-5 rounded-full shadow-2xl text-4xl bg-gray-200 text-black p-5 flex justify-center items-center cursor-pointer">
+              -
             </div>
             1
-            <div className="h-5 w-5 rounded-full shadow-2xl bg-gray-700 text-gray-50 p-2 flex justify-center items-center">
-              -
+            <div className="h-5 w-5 rounded-full shadow-2xl text-4xl  bg-white text-black p-5 flex justify-center cursor-pointer items-center border border-black">
+              +
             </div>
           </div>
         </div>
       </div>
-      <div className="bg-green-400 ">image</div>
+      <div className="bg-[#FBFCFF] flex flex-col gap-y-4 p-5">
+        <h5>Order Summary</h5>
+        <div className="flex gap-x-28">
+          <h1>Quantity</h1>
+          <h1> 1 Product</h1>
+        </div>
+        <div className="flex gap-x-28">
+          <h1>Sub Total</h1>
+          <h1> $545</h1>
+        </div>
+        <Button />
+      </div>
     </div>
   );
 };
