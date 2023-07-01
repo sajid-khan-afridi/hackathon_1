@@ -1,27 +1,64 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+ 
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer components{
+  h2{
+    @apply text-6xl font-bold sm:text-4xl mdl:text-5xl
+  } 
+  h3{
+    @apply text-sm text-primary font-bold tracking-widest
+  } 
+  h4{
+    @apply text-4xl font-bold mt-5
+  } 
+  h5{
+    @apply font-semibold text-[18px] leading-5 font-bodyFont sml:mb-4 mb-2
   }
-}
+  h6{
+    @apply font-bodyFont text-[32px] font-bold leading-[40px]
+  }
+  p{
+    @apply text-slate-500 font-bodyFont leading-[22px] font-light text-[17px]
+  } 
+  
+  .btn-1{
+    @apply bg-blue-100 text-primary inline px-5 py-3 font-bold
+  } 
+  .btn-2{
+    @apply  text-white bg-black px-4 py-2 font-bodyFont text-[14px] leading-[18px] font-semibold border-t-2 border-l-2 border-slate-600
+  }
+  .cover{
+    @apply w-10 h-10 bg-[#F1F1F1] rounded-lg flex justify-center items-center text-lg
+  }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  /* product tailwind */
+  .pdh{
+    @apply font-semibold text-[18px] leading-none font-bodyFont
+  }
+  .pdh2{
+    @apply font-semibold text-[22px] leading-none font-bodyFont
+  }
+  .pdp{
+    @apply text-slate-500 font-bodyFont leading-[22px] font-semibold text-[16px]
+  }
+
 }
+  @layer utilities{
+    .grid-custom {
+      grid-template-columns: repeat(3, minmax(0, max-content));
+    }
+    .grid-4col {
+      grid-template-columns: repeat(4, minmax(0, max-content));
+    }
+    .grid-3col {
+      grid-template-columns: repeat(3, minmax(0, max-content));
+    }
+    
+  }
+
+  
+
+ 
