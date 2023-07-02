@@ -92,18 +92,20 @@ removeItem:(state,action)=>{
 increaseItemQuantity:(state,action)=>{
   // @ts-ignore
   state.allCart=state.allCart.map((item)=>{
-    if(item.alt===action.payload){
+    if(item._id===action.payload){
       return {...item,quantity:item.quantity + 1}
     }
+    return item;
   })
 },
 
 decreaseItemQuantity:(state,action)=>{
   // @ts-ignore
   state.allCart=state.allCart.map((item)=>{
-    if(item.alt===action.payload){
+    if(item._id===action.payload){
       return {...item,quantity:item.quantity - 1}
     }
+    return item;
   })
 },
     // decrement: (state) => {

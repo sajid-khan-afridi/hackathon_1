@@ -80,7 +80,9 @@ const Cart = () => {
                     >
                       -
                     </div>
-                    <div onChange={() => null}>{data.quantity}</div>
+                    {/* <div onChange={() => null}> */}
+                    {data.quantity}
+                    {/* </div> */}
                     <div
                       className="h-5 w-5 rounded-full shadow-2xl text-4xl  bg-white text-black p-5 flex justify-center cursor-pointer items-center border border-black"
                       onClick={() => dispatch(increaseItemQuantity(data._id))}
