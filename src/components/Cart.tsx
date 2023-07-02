@@ -53,7 +53,6 @@ const Cart = () => {
             >
               <div className="">
                 <Image
-                  // @ts-ignore
                   src={urlForImage(data.image)}
                   alt="ev"
                   height={300}
