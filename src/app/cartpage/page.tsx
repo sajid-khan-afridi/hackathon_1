@@ -1,5 +1,5 @@
 import Wrapper from "../../../components/Wrapper";
-import Cart from "../../../components/section/Cart";
+import Cart from "@/components/Cart";
 
 const Page = () => {
   return (
