@@ -1,14 +1,22 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Wrapper from "../Wrapper";
 import Image from "next/image";
 import Link from "next/link";
 import { Search, ShoppingCart } from "lucide-react";
 import { MdOutlineClose } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
+import { getCartTotal } from "@/store/slice/cartSlice";
 
 export const Navbar = () => {
   const ref = useRef<string | any>("");
   const [showMenu, setShowMenu] = useState(false);
+  const { totalQuantity, allCart } = useSelector((state: any) => state.store);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getCartTotal());
+  }, [allCart, dispatch]);
+
   return (
     // <Wrapper>
     <div className="w-full shadow-navbarShadow h-20 lg:h-[12vh] sticky top-0 z-50 bg-white px-4">
@@ -39,8 +47,9 @@ export const Navbar = () => {
         <Link href={"/cartpage"}>
           <div className="bg-gray-200 rounded-full p-3">
             <ShoppingCart className="relative" />
-            <span className="absolute bg-[#f02d34] rounded-full w-6 h-6 text-center top-9 right-20 text-white">
-              0
+            <span className="absolute bg-[#f02d34] rounded-full w-6 h-6 text-center top-5 right-24 text-white">
+              {/* 0 */}
+              {totalQuantity}
             </span>
           </div>
         </Link>
@@ -84,7 +93,8 @@ export const Navbar = () => {
                 <div className="bg-gray-200 rounded-full p-3 relative">
                   <ShoppingCart className="" />
                   <span className="absolute bg-[#f02d34] rounded-full w-6 h-6 text-center top-0 right-0 text-white">
-                    0
+                    {/* 0 */}
+                    {totalQuantity}
                   </span>
                 </div>
               </Link>

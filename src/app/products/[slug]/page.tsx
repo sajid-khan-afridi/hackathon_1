@@ -9,7 +9,7 @@ import Button from "@/components/Button";
 async function getData(slug: string) {
   const res = await client.fetch(
     `*[_type=="product" && alt==$slug]{
-      title,image,alt,price,_id,category -> {
+      title,image,alt,price,quantity,_id,category -> {
         name
       }, ptype -> {
         name

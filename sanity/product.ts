@@ -13,6 +13,11 @@ export const product={
             type:"string",
         }),
         defineField({
+            name:"quantity",
+            title:"Quantity",
+            type:"number",
+        }),
+        defineField({
         name:"title",
         type:"string",
         title:"Product Title"

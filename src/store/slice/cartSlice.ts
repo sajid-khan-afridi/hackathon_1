@@ -2,25 +2,31 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { client } from "@/lib/createClient";
 import { Image as IImage } from "sanity";
+import { data } from 'autoprefixer';
+import { Console } from 'console';
 
 
 
 // async function getData() {
-//     const res = await client.fetch(`*[_type=="product"]{
+//     const res= await client.fetch(`*[_type=="product"]{
 //       title,image,alt,price,_id,category -> {
 //         name
 //       }, ptype -> {
 //         name
 //       }
 //     }`);
-//     return res;
+//     return await res;
 //   }
+//   (async function Home() {
+//     const data: IProduct[] = await getData();
+//   })()
 
   interface IProduct {
     id:string,
     title: string;
     image: IImage;
     alt: string;
+    quantity:number;
     category: {
       name: string;
     };
@@ -29,7 +35,6 @@ import { Image as IImage } from "sanity";
     _id: string;
   }
 
-//   const data: IProduct[] = await getData();
 
 export interface cartState {
   allCart:IProduct[],
@@ -39,7 +44,6 @@ export interface cartState {
 
 const initialState:cartState= {
   allCart:[],
-//   items:data,
   totalQuantity:0,
   totalPrice:0,
 }
@@ -50,9 +54,58 @@ export const cartSlice = createSlice({
   reducers: {
     
     addToCart: (state, action)=>{
+      let find=state.allCart.findIndex((item)=>item._id===action.payload._id);
+      if(find>=0){
+        state.allCart[find].quantity+=1
+      }
+      else{
         state.allCart.push(action.payload)
+      }
     }
 ,
+
+getCartTotal:(state)=>{
+  let {totalQuantity,totalPrice}=state.allCart.reduce(
+    (cartTotal,cartItem)=>{
+      console.log("carttotal",cartTotal);
+      console.log("cartitem",cartItem);
+      const {price,quantity}=cartItem;
+      console.log(price,quantity);
+      const itemTotal=price*quantity;
+      cartTotal.totalPrice+=itemTotal;//cartTotal=initailState
+      cartTotal.totalQuantity+=quantity;
+      return cartTotal;
+    },
+    {
+      totalPrice:0,
+      totalQuantity:0,
+    }
+  )
+  state.totalPrice=parseInt(totalPrice.toFixed(2));
+  state.totalQuantity=totalQuantity;
+},
+
+removeItem:(state,action)=>{
+  state.allCart=state.allCart.filter((item)=>item._id!==action.payload)
+},
+
+increaseItemQuantity:(state,action)=>{
+  // @ts-ignore
+  state.allCart=state.allCart.map((item)=>{
+    if(item._id===action.payload){
+      return {...item,quantity:item.quantity + 1}
+    }
+  })
+},
+
+decreaseItemQuantity:(state,action)=>{
+  // @ts-ignore
+  state.allCart=state.allCart.map((item)=>{
+    if(item._id===action.payload){
+      return {...item,quantity:item.quantity - 1}
+    }
+  })
+},
     // decrement: (state) => {
     //   state.value -= 1
     // },
@@ -67,7 +120,7 @@ export const cartSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 //export const { increment, decrement, incrementByAmount,showData,incrementByValue } = counterSlice.actions
-export const { addToCart} = cartSlice.actions
+export const { addToCart,getCartTotal,removeItem,increaseItemQuantity,decreaseItemQuantity} = cartSlice.actions
 
 
 export default cartSlice.reducer
