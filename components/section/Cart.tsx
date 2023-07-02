@@ -5,7 +5,7 @@ import { MdDelete } from "react-icons/md";
 
 const Cart = () => {
   return (
-    <div className="grid lg:grid-3col sm:grid-cols-1 md:grid-cols-2 mt-40 gap-x-10 gap-y-12">
+    <div className="grid lgl:grid-3col sm:grid-cols-1 md:grid-cols-2 mt-40 gap-x-10 gap-y-12">
       <div className="">
         <Image
           src={"/3.png"}
