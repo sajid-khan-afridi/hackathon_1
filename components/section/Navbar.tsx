@@ -21,7 +21,7 @@ export const Navbar = () => {
     // <Wrapper>
     <div className="w-full shadow-navbarShadow h-20 lg:h-[12vh] sticky top-0 z-50 bg-white px-4">
       <div className="hidden lg:flex justify-between py-5 items-center px-20 bg-white">
-        <Link href={"/"}>
+        <Link href={"/"} passHref>
           <Image src={"/logo.webp"} alt="logo" width={140} height={100} />
         </Link>
         <div className="flex gap-12">
@@ -44,7 +44,7 @@ export const Navbar = () => {
             />
           </div>
         </div>
-        <Link href={"/cartpage"}>
+        <Link href={"/cartpage"} passHref>
           <div className="bg-gray-200 rounded-full p-3">
             <ShoppingCart className="relative" />
             <span className="absolute bg-[#f02d34] rounded-full w-6 h-6 text-center top-5 right-24 text-white">
@@ -89,7 +89,7 @@ export const Navbar = () => {
 
             {/* below the div contains navbar in column order for mobile user */}
             <div className="flex flex-col gap-7 items-center mt-14">
-              <Link href={"/cartpage"}>
+              <Link href={"/cartpage"} passHref>
                 <div className="bg-gray-200 rounded-full p-3 relative">
                   <ShoppingCart className="" />
                   <span className="absolute bg-[#f02d34] rounded-full w-6 h-6 text-center top-0 right-0 text-white">
