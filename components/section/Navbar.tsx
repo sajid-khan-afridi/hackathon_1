@@ -22,7 +22,7 @@ export const Navbar = () => {
     <div className="w-full shadow-navbarShadow h-20 lg:h-[12vh] sticky top-0 z-50 bg-white px-4">
       <div className="hidden lg:flex justify-between py-5 items-center px-20 bg-white">
         <Link href={"/"} passHref>
-          <Image src={"/logo.webp"} alt="logo" width={140} height={100} />
+          <Image src={"/Logo.webp"} alt="logo" width={140} height={100} />
         </Link>
         <div className="flex gap-12">
           {/* font-family: Sora,sans-serif */}
