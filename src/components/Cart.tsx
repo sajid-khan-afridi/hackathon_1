@@ -112,7 +112,7 @@ const Cart = () => {
         ) : (
           <div className="flex flex-col justify-center items-center">
             <PiBag className="text-[150px]" />
-            <h2 >Your shopping bag is empty</h2>
+            <h2 className="mb-10">Your shopping bag is empty</h2>
           </div>
         )}
       </div>
