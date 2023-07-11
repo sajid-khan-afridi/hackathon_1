@@ -7,8 +7,6 @@ import { Search, ShoppingCart } from "lucide-react";
 import { MdOutlineClose } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { getCartTotal } from "@/store/slice/cartSlice";
-import UButton from "../function/UButton";
-// import { UserButton } from "@clerk/nextjs";
 
 export const Navbar = () => {
   const ref = useRef<string | any>("");
@@ -47,7 +45,6 @@ export const Navbar = () => {
           </div>
           {/* clerk button */}
           {/* <UserButton afterSignOutUrl="/" /> */}
-          <UButton />
         </div>
         <Link href={"/cartpage"} passHref>
           <div className="bg-gray-200 rounded-full p-3">

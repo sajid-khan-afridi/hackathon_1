@@ -2,7 +2,6 @@ import Providers from "@/components/Providers";
 import CopyRight from "../../components/section/CopyRight";
 import Footer from "../../components/section/Footer";
 import { Navbar } from "../../components/section/Navbar";
-import { ClerkProvider } from "@clerk/nextjs";
 
 import "./globals.css";
 import { Inter } from "next/font/google";
@@ -20,17 +19,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
-      <Providers>
-        <html lang="en">
-          <body className={inter.className}>
-            <Navbar />
-            {children}
-            <Footer />
-            <CopyRight />
-          </body>
-        </html>
-      </Providers>
-    </ClerkProvider>
+    <Providers>
+      <html lang="en">
+        <body className={inter.className}>
+          <Navbar />
+          {children}
+          <Footer />
+          <CopyRight />
+        </body>
+      </html>
+    </Providers>
   );
 }
