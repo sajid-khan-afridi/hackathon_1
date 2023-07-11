@@ -7,11 +7,13 @@ import { Search, ShoppingCart } from "lucide-react";
 import { MdOutlineClose } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { getCartTotal } from "@/store/slice/cartSlice";
-import { UserButton } from "@clerk/nextjs";
+import UButton from "../function/UButton";
+// import { UserButton } from "@clerk/nextjs";
 
 export const Navbar = () => {
   const ref = useRef<string | any>("");
   const [showMenu, setShowMenu] = useState(false);
+
   const { totalQuantity, allCart } = useSelector((state: any) => state.store);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -26,7 +28,6 @@ export const Navbar = () => {
           <Image src={"/Logo.webp"} alt="logo" width={140} height={100} />
         </Link>
         <div className="flex gap-12">
-          {/* font-family: Sora,sans-serif */}
           <Link className="" href={"/female"}>
             Female
           </Link>
@@ -45,7 +46,8 @@ export const Navbar = () => {
             />
           </div>
           {/* clerk button */}
-          <UserButton afterSignOutUrl="/" />
+          {/* <UserButton afterSignOutUrl="/" /> */}
+          <UButton />
         </div>
         <Link href={"/cartpage"} passHref>
           <div className="bg-gray-200 rounded-full p-3">
