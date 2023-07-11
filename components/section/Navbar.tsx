@@ -7,6 +7,7 @@ import { Search, ShoppingCart } from "lucide-react";
 import { MdOutlineClose } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { getCartTotal } from "@/store/slice/cartSlice";
+import { UserButton } from "@clerk/nextjs";
 
 export const Navbar = () => {
   const ref = useRef<string | any>("");
@@ -33,7 +34,7 @@ export const Navbar = () => {
           <Link href={"/kid"}>Kids</Link>
           <Link href={"/products"}>All Products</Link>
         </div>
-        <div>
+        <div className="flex">
           <div className="flex items-center">
             <Search className="rounded-l bg-white" />
             <input
@@ -43,6 +44,8 @@ export const Navbar = () => {
               placeholder="What you looking for"
             />
           </div>
+          {/* clerk button */}
+          <UserButton afterSignOutUrl="/" />
         </div>
         <Link href={"/cartpage"} passHref>
           <div className="bg-gray-200 rounded-full p-3">
