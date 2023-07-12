@@ -54,7 +54,7 @@ const Cart = () => {
             >
               <div className="">
                 <Image
-                  src={data.image}
+                  src={urlForImage(data.image)}
                   alt="ev"
                   height={300}
                   width={200}
