@@ -6,6 +6,7 @@ import { addToCart } from "@/store/slice/cartSlice";
 import { useAppDispatch } from "@/store/store";
 import toast, { Toaster } from "react-hot-toast";
 import { urlForImage } from "../../sanity/lib/image";
+import { useAuth } from "@clerk/nextjs";
 
 interface IProduct {
   id: string;
@@ -23,11 +24,12 @@ interface IProduct {
 }
 
 const AddToCartButton = ({ props }: { props: IProduct }) => {
+  const { userId } = useAuth();
   // const items = useSelector((state: any) => state.allCart);
   const dispatch = useAppDispatch();
 
   const handleRequestData = async () => {
-    const res = await fetch(`/api/cart/${props.userId}`);
+    const res = await fetch(`/api/cart/${userId}`);
 
     if (!res.ok) {
       console.log("Failed to load Data");
@@ -35,7 +37,8 @@ const AddToCartButton = ({ props }: { props: IProduct }) => {
     const data = await res.json();
     // console.log(res);
     // return res;
-    // console.log(data);
+    console.log(data);
+
     return data;
   };
 
