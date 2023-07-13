@@ -1,8 +1,9 @@
 import { addToCart, cartTable, db } from "@/lib/drizzle";
 import { auth } from "@clerk/nextjs";
 import { NextRequest, NextResponse } from "next/server";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { urlForImage } from "../../../../sanity/lib/image";
+import { log } from "console";
 
 // export const GET = async (req: NextRequest) => {
 // //   const { userId } = auth();
@@ -73,3 +74,19 @@ export const POST=async (request:NextRequest)=>{
         })
     }
 }
+
+export const PUT = async (request: NextRequest) => {
+    const { userId} = auth();
+    const req: addToCart = await request.json();
+    try {
+        if(req){
+            const res =await db.update(cartTable).set({quantity:req.quantity,total_price:req.price}).where(and(eq(cartTable.user_id, userId as string),eq(cartTable.product_id,req.product_id))).returning();
+            return NextResponse.json({res});
+        } else {
+            throw new Error("Failed to update Data")
+        }
+    } catch (error) {
+        console.log(error);
+        return NextResponse.json({Message:"Something went wrong"})
+    }
+}  

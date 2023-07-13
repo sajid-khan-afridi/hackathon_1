@@ -7,6 +7,7 @@ import { useAppDispatch } from "@/store/store";
 import toast, { Toaster } from "react-hot-toast";
 import { urlForImage } from "../../sanity/lib/image";
 import { useAuth } from "@clerk/nextjs";
+import { log } from "console";
 
 interface IProduct {
   id: string;
@@ -58,13 +59,50 @@ const AddToCartButton = ({ props }: { props: IProduct }) => {
     });
   };
 
+  const handleCart = async () => {
+    try {
+      const cartData = await handleRequestData();
+      const existingItem = cartData.cartItems.find(
+        (item: any) => item.product_id === props._id
+      );
+      // console.log("existingItem= ", existingItem);
+      if (existingItem) {
+        const newQuantity = existingItem.quantity + 1;
+        const newPrice = props.price * newQuantity;
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/cart`,
+          {
+            method: "PUT",
+            body: JSON.stringify({
+              product_id: props._id,
+              quantity: newQuantity,
+              price: newPrice,
+            }),
+          }
+        );
+        if (!res.ok) {
+          throw new Error("Failed to update data");
+        }
+      } else {
+        await handlePostData();
+      }
+    } catch (error) {
+      console.log((error as { message: string }).message);
+    }
+  };
+
   const addToCartData = () => {
-    toast.promise(handlePostData(), {
+    toast.promise(handleCart(), {
       loading: "Adding Data To Cart",
       success: "Product Added Successfully",
       error: "Failed to add Product",
     });
-    handleRequestData();
+    // toast.promise(handlePostData(), {
+    //   loading: "Adding Data To Cart",
+    //   success: "Product Added Successfully",
+    //   error: "Failed to add Product",
+    // });
+    // handleRequestData();
     dispatch(addToCart(props));
   };
   return (

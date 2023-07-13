@@ -28,6 +28,7 @@ export const GET = async (request: NextRequest, { params: { userId } }: { params
           price: item.price,
           _id: item._id,
           user_id:item.user_id,
+          product_id:item.product_id,
         }));
         const totalQuantity = cartItems.reduce(
           (total, item) => total + item.quantity,
