@@ -24,8 +24,8 @@ async function getData(slug: string) {
 const page = async ({ params }: { params: { slug: string } }) => {
   const data = await getData(params.slug);
   const { userId } = auth();
-  const newData = data.push(userId);
-  console.log(newData);
+  // const newData = data.push(userId);
+  console.log(userId);
   // console.log(data);
   return (
     <div>
@@ -54,7 +54,7 @@ const page = async ({ params }: { params: { slug: string } }) => {
           <div className="pdp">{data[0].ptype.name}</div>
           <h4></h4>
           <div className="">
-            <AddToCartButton props={newData[0]} />
+            <AddToCartButton props={data[0]} />
             <span className="pdh2">${data[0].price}</span>
           </div>
         </div>

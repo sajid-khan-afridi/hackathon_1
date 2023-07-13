@@ -3,15 +3,16 @@ import { auth } from "@clerk/nextjs";
 import { NextRequest, NextResponse } from "next/server";
 import {eq} from "drizzle-orm"
 
-type Iprops = {
+// type Iprops = {
     
-        userId: string;
+//         userId: string;
     
-}
+// }
 
-export const Get = async (req: NextRequest, params: Iprops) => {
+export const Get = async (request: NextRequest, { params: { userId } }: { params: { userId: string }}) => {
     // const { userId } = auth();
-    const userId = params.userId;
+    // const user_Id = userId;
+    console.log(userId)
     try {
       if (userId) {
         const res = await db
