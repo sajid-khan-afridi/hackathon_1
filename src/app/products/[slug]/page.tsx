@@ -4,7 +4,8 @@ import Image from "next/image";
 import { urlForImage } from "../../../../sanity/lib/image";
 import Link from "next/link";
 import Wrapper from "../../../../components/Wrapper";
-import Button from "@/components/Button";
+import AddToCartButton from "@/components/Button";
+import { auth } from "@clerk/nextjs";
 
 async function getData(slug: string) {
   const res = await client.fetch(
@@ -22,6 +23,9 @@ async function getData(slug: string) {
 
 const page = async ({ params }: { params: { slug: string } }) => {
   const data = await getData(params.slug);
+  const { userId } = auth();
+  const newData = data.push(userId);
+  console.log(newData);
   // console.log(data);
   return (
     <div>
@@ -50,7 +54,7 @@ const page = async ({ params }: { params: { slug: string } }) => {
           <div className="pdp">{data[0].ptype.name}</div>
           <h4></h4>
           <div className="">
-            <Button props={data[0]} />
+            <AddToCartButton props={newData[0]} />
             <span className="pdh2">${data[0].price}</span>
           </div>
         </div>

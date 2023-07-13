@@ -33,6 +33,7 @@ import { Console } from 'console';
     price: number;
     ptype: string;
     _id: string;
+    user_id:string;
   }
 
 
