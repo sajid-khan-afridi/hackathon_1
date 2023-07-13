@@ -32,11 +32,11 @@ const AddToCartButton = ({ props }: { props: IProduct }) => {
     if (!res.ok) {
       console.log("Failed to load Data");
     }
-    // const data = await res.json();
-    console.log(res);
-    return res;
+    const data = await res.json();
+    // console.log(res);
+    // return res;
     // console.log(data);
-    // return data;
+    return data;
   };
 
   // Posting data to database

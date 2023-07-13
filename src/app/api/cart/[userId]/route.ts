@@ -9,7 +9,7 @@ import {eq} from "drizzle-orm"
     
 // }
 
-export const Get = async (request: NextRequest, { params: { userId } }: { params: { userId: string }}) => {
+export const GET = async (request: NextRequest, { params: { userId } }: { params: { userId: string }}) => {
     // const { userId } = auth();
     // const user_Id = userId;
     console.log(userId)

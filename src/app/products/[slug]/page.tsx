@@ -25,7 +25,7 @@ const page = async ({ params }: { params: { slug: string } }) => {
   const data = await getData(params.slug);
   const { userId } = auth();
   // const newData = data.push(userId);
-  console.log(userId);
+  // console.log(userId);
   // console.log(data);
   return (
     <div>

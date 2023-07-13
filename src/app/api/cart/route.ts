@@ -4,8 +4,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { eq } from "drizzle-orm";
 import { urlForImage } from "../../../../sanity/lib/image";
 
-// export const Get = async (req: NextRequest) => {
-//   const { userId } = auth();
+// export const GET = async (req: NextRequest) => {
+// //   const { userId } = auth();
+// const userId=await req.json();
 //   try {
 //     if (userId) {
 //       const res = await db
