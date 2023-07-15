@@ -42,6 +42,7 @@ const Cart = () => {
   }, [allCart, dispatch]);
 
   // dispatch(getCartTotal());
+
   return (
     <>
       <div>Cart - {allCart.length} items</div>
