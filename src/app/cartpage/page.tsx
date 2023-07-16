@@ -1,7 +1,6 @@
 "use client";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import Wrapper from "../../../components/Wrapper";
-import Cart from "@/components/Cart1";
 import Button from "../../../components/function/Button";
 import { PiBag } from "react-icons/pi";
 import React, { useEffect } from "react";
