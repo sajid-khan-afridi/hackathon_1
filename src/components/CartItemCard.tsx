@@ -1,5 +1,6 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { urlForImage } from "../../sanity/lib/image";
 import { MdDelete } from "react-icons/md";
 import { useAppDispatch } from "@/store/store";
@@ -8,9 +9,35 @@ import {
   increaseItemQuantity,
   removeItem,
 } from "@/store/slice/cartSlice";
+import toast, { Toaster } from "react-hot-toast";
+import { Console, log } from "console";
 
 const CartItemCard = ({ cartItem }: any) => {
   const dispatch = useAppDispatch();
+  const [qty, setQty] = useState(cartItem.quantity);
+
+  const handleDelete = async () => {
+    await fetch(`/api/cart/removeitem/${cartItem._id}`, {
+      method: "DELETE",
+    });
+  };
+
+  const decrement = () => {
+    if (cartItem.quantity > 1) {
+      // toast.promise(handleCart)
+    }
+  };
+
+  const rmProduct = () => {
+    toast.promise(handleDelete(), {
+      loading: "Removing Product",
+      success: "Product Removed",
+      error: "Failed to Remove Product",
+    });
+    dispatch(removeItem(cartItem._id));
+    console.log("Cart id:=", cartItem._id);
+  };
+
   return (
     <>
       <div key={cartItem._id} className="flex sm:flex-col xl:flex-row gap-x-10">
@@ -34,7 +61,7 @@ const CartItemCard = ({ cartItem }: any) => {
           <div className="flex flex-col justify-between">
             <MdDelete
               className="text-4xl ml-auto cursor-pointer"
-              onClick={() => dispatch(removeItem(cartItem._id))}
+              onClick={rmProduct}
             />
             <div className="flex gap-x-2 justify-center items-center text-lg">
               <div
@@ -55,6 +82,7 @@ const CartItemCard = ({ cartItem }: any) => {
             </div>
           </div>
         </div>
+        <Toaster />
       </div>
     </>
   );
