@@ -10,21 +10,61 @@ import {
   removeItem,
 } from "@/store/slice/cartSlice";
 import toast, { Toaster } from "react-hot-toast";
-import { Console, log } from "console";
 
 const CartItemCard = ({ cartItem }: any) => {
   const dispatch = useAppDispatch();
   const [qty, setQty] = useState(cartItem.quantity);
 
+  const handleCart = async (newQty: number) => {
+    const newPrice = cartItem.price * newQty;
+    try {
+      if (newQty) {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/cart`,
+          {
+            method: "PUT",
+            body: JSON.stringify({
+              product_id: cartItem._id,
+              quantity: newQty,
+              price: newPrice,
+            }),
+          }
+        );
+        if (!res.ok) {
+          throw new Error("Failed to update data");
+        }
+      } else {
+        throw new Error("Failed to fetch updata");
+      }
+    } catch (error) {
+      console.log((error as { message: string }).message);
+    }
+  };
   const handleDelete = async () => {
     await fetch(`/api/cart/removeitem/${cartItem._id}`, {
       method: "DELETE",
     });
   };
 
+  const increment = () => {
+    toast.promise(handleCart(qty + 1), {
+      loading: "Increasing Product Quantity",
+      success: "Product Quantity Increased",
+      error: "Failed to Increased Quantity",
+    });
+    setQty(qty + 1);
+    dispatch(increaseItemQuantity(cartItem._id));
+  };
+
   const decrement = () => {
     if (cartItem.quantity > 1) {
-      // toast.promise(handleCart)
+      toast.promise(handleCart(qty - 1), {
+        loading: "Decreaing Quantity",
+        success: "Product quantity Decreased",
+        error: "Failed to Decrease Quantity",
+      });
+      setQty(qty - 1);
+      dispatch(decreaseItemQuantity(cartItem._id));
     }
   };
 
@@ -66,7 +106,7 @@ const CartItemCard = ({ cartItem }: any) => {
             <div className="flex gap-x-2 justify-center items-center text-lg">
               <div
                 className="h-5 w-5 rounded-full shadow-2xl text-4xl bg-gray-200 text-black p-5 flex justify-center items-center cursor-pointer"
-                onClick={() => dispatch(decreaseItemQuantity(cartItem._id))}
+                onClick={decrement}
               >
                 -
               </div>
@@ -75,7 +115,7 @@ const CartItemCard = ({ cartItem }: any) => {
               {/* </div> */}
               <div
                 className="h-5 w-5 rounded-full shadow-2xl text-4xl  bg-white text-black p-5 flex justify-center cursor-pointer items-center border border-black"
-                onClick={() => dispatch(increaseItemQuantity(cartItem._id))}
+                onClick={increment}
               >
                 +
               </div>
