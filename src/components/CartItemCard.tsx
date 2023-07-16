@@ -41,12 +41,9 @@ const CartItemCard = ({ cartItem }: any) => {
     }
   };
   const handleDelete = async () => {
-    await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/cart/removeitem/${cartItem._id}`,
-      {
-        method: "DELETE",
-      }
-    );
+    await fetch(`/api/cart/removeitem/${cartItem._id}`, {
+      method: "DELETE",
+    });
   };
 
   const increment = () => {
