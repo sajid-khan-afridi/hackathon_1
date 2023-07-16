@@ -65,6 +65,7 @@ const AddToCartButton = ({ props }: { props: IProduct }) => {
       const existingItem = cartData.cartItems.find(
         (item: any) => item.product_id === props._id
       );
+      // console.log(cartData.cartItems);
       // console.log("existingItem= ", existingItem);
       if (existingItem) {
         const newQuantity = existingItem.quantity + 1;
