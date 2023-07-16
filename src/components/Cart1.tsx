@@ -31,7 +31,7 @@ interface IProduct {
   _id: string;
 }
 
-const Cart = () => {
+const Cart1 = () => {
   const { allCart, totalQuantity, totalPrice } = useSelector(
     (state: any) => state.store
   );
@@ -121,4 +121,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default Cart1;
