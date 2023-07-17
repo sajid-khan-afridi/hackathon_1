@@ -60,7 +60,7 @@ export const Navbar = () => {
       {/* responsiveness */}
       <div className="lg:hidden flex max-w-5xl h-20 px-4 py-5 justify-between items-center">
         <div>
-          <Image src={"/logo.webp"} alt="logo" width={140} height={100} />
+          <Image src={"/Logo.webp"} alt="logo" width={140} height={100} />
         </div>
         <div
           onClick={() => setShowMenu(true)}

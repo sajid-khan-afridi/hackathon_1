@@ -41,6 +41,7 @@ const CartItemCard = ({ cartItem }: any) => {
     }
   };
   const handleDelete = async () => {
+    console.log(cartItem._id);
     await fetch(`/api/cart/removeitem/${cartItem._id}`, {
       method: "DELETE",
     });
