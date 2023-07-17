@@ -4,6 +4,7 @@ import { client } from "@/lib/createClient";
 import { Image as IImage } from "sanity";
 import { data } from 'autoprefixer';
 import { Console } from 'console';
+import { urlForImage } from '../../../sanity/lib/image';
 
 
 
@@ -24,7 +25,8 @@ import { Console } from 'console';
   interface IProduct {
     id:string,
     title: string;
-    image: IImage;
+    image: string;
+    // image: IImage;
     alt: string;
     quantity:number;
     category: {
@@ -55,12 +57,17 @@ export const cartSlice = createSlice({
   reducers: {
     
     addToCart: (state, action)=>{
+      const newItem = action.payload;
       let find=state.allCart.findIndex((item)=>item._id===action.payload._id);
       if(find>=0){
         state.allCart[find].quantity+=1
       }
       else{
-        state.allCart.push(action.payload)
+        // state.allCart.push(action.payload)
+        state.allCart.push({
+          ...newItem,
+          image: urlForImage(newItem.image)
+        })
       }
     }
 ,

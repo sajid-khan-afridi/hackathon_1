@@ -84,7 +84,8 @@ const CartItemCard = ({ cartItem }: any) => {
       <div key={cartItem._id} className="flex sm:flex-col xl:flex-row gap-x-10">
         <div className="">
           <Image
-            src={urlForImage(cartItem.image)}
+            // src={urlForImage(cartItem.image)}
+            src={cartItem.image}
             alt="ev"
             height={300}
             width={200}
