@@ -95,7 +95,7 @@ const CartItemCard = ({ cartItem }: any) => {
         <div className="flex flex-row sm:gap-x-30 lg:gap-x-36">
           <div className=" flex flex-col gap-y-5">
             <h5>{cartItem.title}</h5>
-            <h1>{cartItem.ptype.name}</h1>
+            {/* <h1>{cartItem.ptype.name}</h1> */}
             <h1>Delivery Estimation</h1>
             <h1>5 Working Days</h1>
             <h1>{cartItem.price}</h1>

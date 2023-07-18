@@ -6,18 +6,27 @@ import Link from "next/link";
 import { Search, ShoppingCart } from "lucide-react";
 import { MdOutlineClose } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { getCartTotal } from "@/store/slice/cartSlice";
-import { UserButton } from "@clerk/nextjs";
+import { fetchData, getCartTotal } from "@/store/slice/cartSlice";
+import { UserButton, useAuth } from "@clerk/nextjs";
+import { useAppDispatch } from "@/store/store";
 
 export const Navbar = () => {
   const ref = useRef<string | any>("");
   const [showMenu, setShowMenu] = useState(false);
 
+  const { userId } = useAuth();
+
   const { totalQuantity, allCart } = useSelector((state: any) => state.store);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+  const dispatch1 = useAppDispatch();
   useEffect(() => {
     dispatch(getCartTotal());
+    // dispatch(fetchData(userId as string));
   }, [allCart, dispatch]);
+
+  useEffect(() => {
+    dispatch1(fetchData(userId as string));
+  }, [userId, dispatch1]);
 
   return (
     // <Wrapper>

@@ -1,10 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { client } from "@/lib/createClient";
 import { Image as IImage } from "sanity";
 import { data } from 'autoprefixer';
 import { Console } from 'console';
 import { urlForImage } from '../../../sanity/lib/image';
+import { RootState } from '../store';
 
 
 
@@ -42,14 +43,31 @@ import { urlForImage } from '../../../sanity/lib/image';
 export interface cartState {
   allCart:IProduct[],
   totalQuantity:number,
-  totalPrice:number
+  totalPrice:number,isLoading:boolean;
+  error:any;
 }
 
 const initialState:cartState= {
   allCart:[],
   totalQuantity:0,
   totalPrice:0,
+  isLoading: false,
+  error:null,
 }
+
+export const fetchData = createAsyncThunk(
+  "cart/fetchData",
+  async(userId:string)=>{
+    const res=await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/cart/${userId}`);
+    if(!res.ok){
+      console.log("Failed to Fetch Data From API");
+    }
+    const data=await res.json();
+    console.log("data from database:= ",data)
+
+    return data;//Returning data from database as payload
+  }
+)
 
 export const cartSlice = createSlice({
   name: 'cartName',
@@ -126,8 +144,25 @@ decreaseItemQuantity:(state,action)=>{
     //   state.cart=state.cart+action.payload;
     // }
   },
+  extraReducers(builder) {
+    builder.addCase(fetchData.pending, (state)=>{
+      state.isLoading=true;
+    });
+    builder.addCase(fetchData.fulfilled, (state,action)=>{
+      const {cartItems,totalQuantity,totalAmount}=action.payload;
+      state.allCart=cartItems;
+      state.totalPrice=totalAmount;
+      state.totalQuantity=totalQuantity;
+      state.isLoading=false;
+    });
+    builder.addCase(fetchData.rejected,(state,action)=>{
+      state.isLoading=false;
+      state.error=action.error;
+    })
+  },
 })
 
+export const selectIsLoading=(state:RootState)=>state.store.isLoading;
 // Action creators are generated for each case reducer function
 //export const { increment, decrement, incrementByAmount,showData,incrementByValue } = counterSlice.actions
 export const { addToCart,getCartTotal,removeItem,increaseItemQuantity,decreaseItemQuantity} = cartSlice.actions
