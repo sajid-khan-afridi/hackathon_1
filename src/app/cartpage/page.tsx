@@ -1,7 +1,7 @@
 "use client";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import Wrapper from "../../../components/Wrapper";
-import Button from "../../../components/function/Button";
+import StripeCheckOutButton from "../../../components/function/StripeCheckOutButton";
 import { PiBag } from "react-icons/pi";
 import React, { useEffect } from "react";
 import {
@@ -50,7 +50,7 @@ const Page = () => {
                 <h1>Sub Total</h1>
                 <h1> $ {totalPrice}</h1>
               </div>
-              <Button />
+              <StripeCheckOutButton products={allCart} />
             </div>
           ) : (
             <div className="flex flex-col justify-center items-center">
