@@ -6,7 +6,7 @@ import {headers} from "next/headers"
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET as string;
 export  async function POST(req: any, res: any){
 
-// console.log(endpointSecret + "End Point Secret");
+console.log(endpointSecret + "End Point Secret");
 
     const headerslist = headers();
     

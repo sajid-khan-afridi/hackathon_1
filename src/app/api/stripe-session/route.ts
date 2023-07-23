@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
           enabled: true,
         },
         success_url: `${request.headers.get("origin")}/success`,
-        cancel_url: `${request.headers.get("origin")}/cart`,
+        cancel_url: `${request.headers.get("origin")}/cartpage`,
       });
       return NextResponse.json({ session });
     } else {
