@@ -43,11 +43,11 @@ export const Navbar = () => {
           <Link href={"/kid"}>Kids</Link>
           <Link href={"/products"}>All Products</Link>
         </div>
-        <div className="flex">
-          <div className="flex items-center">
-            <Search className="rounded-l bg-white" />
+        <div className="flex border border-gray-300 rounded-md bg-white w-[30%]">
+          <div className="flex items-center p-1">
+            <Search className="rounded-l bg-white mr-2" size={15} />
             <input
-              className="rounded-r"
+              className="rounded-r text-xs"
               id="username"
               type="text"
               placeholder="What you looking for"
